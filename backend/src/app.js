@@ -20,4 +20,11 @@ app.use("/api/v1/test", (req, res) => {
   res.send("hello");
 });
 
+// Router Imports
+import userRouter from "./routes/user.route.js";
+import convesationRouter from "./routes/conversation.route.js";
+
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/conversations", convesationRouter);
+
 export default app;
