@@ -33,6 +33,10 @@ const generateAccessTokenAndRefreshToken = async (userId) => {
 export const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
+  console.log(req.body);
+
+  console.log(name, email, password);
+
   if ([name, email, password].some((field) => !field?.trim())) {
     throw new ApiError(HTTP_STATUS.BAD_REQUEST, API_MESSAGES.REQUIRED_FIELDS_MISSING);
   }
@@ -45,7 +49,7 @@ export const registerUser = asyncHandler(async (req, res) => {
   const normalizedEmail = email.toLowerCase().trim();
 
   const user = await User.create({
-    name: name.trim(),
+    name: name?.trim(),
     email: normalizedEmail,
     password,
   });
@@ -90,18 +94,16 @@ export const loginUser = asyncHandler(async (req, res) => {
 });
 
 export const refreshAccessToken = asyncHandler(async (req, res) => {
-  const incomingRefreshToken = req.cookies?.refreshToken || req.body?.refreshToken;
+  const incomingRefreshToken = req.cookies?.refreshToken;
+
   if (!incomingRefreshToken) {
     throw new ApiError(HTTP_STATUS.UNAUTHORIZED, API_MESSAGES.UNAUTHORIZED);
   }
+  let decodedRefreshToken;
 
   try {
     decodedRefreshToken = jwt.verify(incomingRefreshToken, env.REFRESH_TOKEN_SECRET);
   } catch {
-    throw new ApiError(HTTP_STATUS.UNAUTHORIZED, API_MESSAGES.INVALID_REFRESH_TOKEN);
-  }
-
-  if (!decodedRefreshToken) {
     throw new ApiError(HTTP_STATUS.UNAUTHORIZED, API_MESSAGES.INVALID_REFRESH_TOKEN);
   }
 
@@ -121,13 +123,7 @@ export const refreshAccessToken = asyncHandler(async (req, res) => {
     .status(HTTP_STATUS.OK)
     .cookie("refreshToken", newRefreshToken, REFRESH_TOKEN_COOKIE_OPTIONS)
     .cookie("accessToken", newAccessToken, ACCESS_TOKEN_COOKIE_OPTIONS)
-    .json(
-      new ApiResponse(
-        HTTP_STATUS.OK,
-        { accessToken: newAccessToken, refreshToken: newRefreshToken },
-        API_MESSAGES.ACCESS_TOKEN_REFRESHED
-      )
-    );
+    .json(new ApiResponse(HTTP_STATUS.OK, {}, API_MESSAGES.ACCESS_TOKEN_REFRESHED));
 });
 
 export const logoutUser = asyncHandler(async (req, res) => {
@@ -152,8 +148,10 @@ export const logoutUser = asyncHandler(async (req, res) => {
 
 export const changeCurrentPassword = asyncHandler(async (req, res) => {
   const { password, newPassword, confirmNewPassword } = req.body;
+  console.log(req.body);
+  
 
-  if ([password, newPassword, confirmNewPassword].some((field) => !field?.trim())) {
+  if ([password, newPassword, confirmNewPassword].some((field) => !field?.trim())) {  
     throw new ApiError(HTTP_STATUS.BAD_REQUEST, API_MESSAGES.REQUIRED_FIELDS_MISSING);
   }
 

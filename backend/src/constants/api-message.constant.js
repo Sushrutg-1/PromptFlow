@@ -11,8 +11,9 @@ export const API_MESSAGES = Object.freeze({
   INVALID_CREDENTIALS: "Invalid email or password.",
   USER_ALREADY_EXISTS: "User already exists.",
   USER_NOT_FOUND: "User not found.",
-
   USER_FETCHED: "User fetched successfully.",
+
+  ACCOUNT_DETAILS_UPDATED_SUCCESS: "Account details updated successfully.",
 
   NO_AVATAR_UPLOADED: "No avatar uploaded.",
   INVALID_AVATAR_FILE: "Invalid avatar file.",
@@ -20,12 +21,16 @@ export const API_MESSAGES = Object.freeze({
   AVATAR_UPDATED_SUCCESS: "Avatar updated successfully.",
   AVATAR_UPDATE_FAILED: "Failed to update avatar.",
 
-  ACCOUNT_DETAILS_UPDATED_SUCCESS: "Account details updated successfully.",
-
   // Conversation
   CONVERSATION_CREATED: "Conversation created successfully.",
   CONVERSATION_UPDATED: "Conversation updated successfully.",
   CONVERSATION_DELETED: "Conversation deleted successfully.",
+  CONVERSATION_NOT_FOUND: "Conversation not found.",
+  CONVERSATIONS_FETCHED: "Conversation fetched successfully",
+  INVALID_CONVERSATION_ID: "Invalid Conversation Id.",
+
+  PROMPT_REQUIRED: "Prompt required",
+  ACTIVE_MODELS_REQUIRED: "Active models are required",
 
   // Messages
   MESSAGE_SENT: "Message sent successfully.",

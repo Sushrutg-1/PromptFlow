@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import env from "./config/env.js";
+import errorHandler from "./middlewares/errorHandler.middleware.js";
 
 const app = express();
 
@@ -17,7 +18,7 @@ app.use(express.static("public"));
 app.use(cookieParser());
 
 app.use("/api/v1/test", (req, res) => {
-  res.send("hello");
+  res.send("this is test route");
 });
 
 // Router Imports
@@ -26,5 +27,7 @@ import convesationRouter from "./routes/conversation.route.js";
 
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/conversations", convesationRouter);
+
+app.use(errorHandler);
 
 export default app;

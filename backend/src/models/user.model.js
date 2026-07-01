@@ -2,7 +2,6 @@ import mongoose, { model, Schema } from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import env from "../config/env.js";
-import { MESSAGE_ROLES, ROLES } from "../constants/index.js";
 
 const UserSchema = new Schema(
   {
@@ -29,17 +28,13 @@ const UserSchema = new Schema(
         "https://img.magnific.com/premium-vector/character-avatar-isolated_729149-194801.jpg?semt=ais_hybrid&w=740&q=80",
       trim: true,
     },
-    isVerified: {
-      type: Boolean,
-      required: true,
-    },
     refreshToken: {
       type: String,
     },
     role: {
       type: String,
-      enum: Object.values(ROLES),
-      default: ROLES.USER,
+      enum: ["user", "admin"],
+      default: "user",
     },
   },
 
