@@ -1,13 +1,8 @@
 import { appName } from "@/utils/test";
+import AppRouter from "./routes/AppRouter";
 
 function App() {
-  return (
-   <main className="flex min-h-screen items-center justify-center bg-zinc-950">
-      <h1 className="text-5xl font-bold text-white">
-        PromptFlow
-      </h1>
-    </main>
-  );
+  return <AppRouter />;
 }
 
 export default App;
