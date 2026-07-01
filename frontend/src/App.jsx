@@ -1,10 +1,12 @@
-import "./App.css";
+import { appName } from "@/utils/test";
 
 function App() {
   return (
-    <>
-      <h1>PromptFlow</h1>
-    </>
+   <main className="flex min-h-screen items-center justify-center bg-zinc-950">
+      <h1 className="text-5xl font-bold text-white">
+        PromptFlow
+      </h1>
+    </main>
   );
 }
 
