@@ -13,6 +13,7 @@ function AppRouter() {
     <BrowserRouter>
       <Routes>
         <Route path={PATHS.HOME} element={<HomePage />} />
+        
         <Route element={<AuthLayout />}>
           <Route path={PATHS.LOGIN} element={<LoginPage />} />
           <Route path={PATHS.SIGNUP} element={<SignupPage />} />

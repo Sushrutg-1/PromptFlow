@@ -1,9 +1,13 @@
 import React from "react";
+import EmptyWorkspace from "../components/EmptyWorkspace";
+import PromptInput from "../components/PromptInput";
 
 function DashboardPage() {
   return (
-    <div className="flex w-full items-center justify-center">
-      <h1 className="text-5xl font-bold">PromptFlow Dashboard</h1>
+    <div className="flex h-full flex-col">
+      <EmptyWorkspace />
+
+      <PromptInput />
     </div>
   );
 }
