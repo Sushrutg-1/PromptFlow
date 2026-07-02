@@ -6,6 +6,7 @@ import AuthLayout from "@/layouts/AuthLayout";
 import LoginPage from "@/features/auth/pages/LoginPage";
 import SignupPage from "@/features/auth/pages/SignupPage";
 import DashboardLayout from "@/layouts/DashboardLayout";
+import DashboardPage from "@/features/chat/pages/DashboardPage";
 
 function AppRouter() {
   return (
@@ -18,7 +19,7 @@ function AppRouter() {
         </Route>
 
         <Route element={<DashboardLayout />}>
-          <Route path={PATHS.DASHBOARD} element={<h1>Dashboard route</h1>} />
+          <Route path={PATHS.DASHBOARD} element={<DashboardPage />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />
