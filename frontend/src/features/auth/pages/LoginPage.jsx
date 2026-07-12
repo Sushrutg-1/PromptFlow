@@ -1,9 +1,12 @@
-import { Button, Input } from "@/components";
 import React from "react";
 import { LoginForm } from "../components";
 
 function LoginPage() {
-  return <LoginForm />;
+  return (
+    <main className="flex justify-center items-center align-middle min-h-screen p-6">
+      <LoginForm />
+    </main>
+  );
 }
 
 export default LoginPage;

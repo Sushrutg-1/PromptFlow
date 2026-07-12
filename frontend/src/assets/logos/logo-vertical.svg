@@ -1,0 +1,26 @@
+<svg width="140" height="90" viewBox="0 0 140 90" xmlns="http://www.w3.org/2000/svg" font-family="'Cabinet Grotesk', 'Inter', sans-serif">
+  <defs>
+    <linearGradient id="threadTopV" x1="0" y1="0" x2="24" y2="12" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#A199FF"/>
+      <stop offset="1" stop-color="#5B4FF0"/>
+    </linearGradient>
+    <linearGradient id="threadBottomV" x1="0" y1="24" x2="24" y2="12" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8175FC"/>
+      <stop offset="1" stop-color="#5B4FF0"/>
+    </linearGradient>
+    <linearGradient id="outputV" x1="24" y1="12" x2="36" y2="12" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5B4FF0"/>
+      <stop offset="1" stop-color="#FF6B57"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(46, 6)">
+    <path d="M0,0 C11,0 15,7 24,12" fill="none" stroke="url(#threadTopV)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M0,12 L24,12" fill="none" stroke="#5B4FF0" stroke-width="3" stroke-linecap="round"/>
+    <path d="M0,24 C11,24 15,17 24,12" fill="none" stroke="url(#threadBottomV)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M24,12 L34,12" fill="none" stroke="url(#outputV)" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="36.5" cy="12" r="3.5" fill="#FF6B57"/>
+  </g>
+
+  <text x="70" y="65" font-size="19" font-weight="700" letter-spacing="-0.3" fill="#F5F6FA" text-anchor="middle">Prompt<tspan fill="#FF6B57">Flow</tspan></text>
+</svg>

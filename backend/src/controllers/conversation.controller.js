@@ -16,7 +16,13 @@ export const createNewConversation = asyncHandler(async (req, res) => {
 
   return res
     .status(HTTP_STATUS.CREATED)
-    .json(new ApiResponse(HTTP_STATUS.CREATED, conversation, API_MESSAGES.CONVERSATION_CREATED));
+    .json(
+      new ApiResponse(
+        HTTP_STATUS.CREATED,
+        { ...conversation.toObject(), turns: [] },
+        API_MESSAGES.CONVERSATION_CREATED
+      )
+    );
 });
 
 export const getAllConversations = asyncHandler(async (req, res) => {

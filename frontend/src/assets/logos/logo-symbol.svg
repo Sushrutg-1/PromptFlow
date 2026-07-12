@@ -1,0 +1,27 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="threadTop" x1="6" y1="12" x2="30" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#A199FF"/>
+      <stop offset="1" stop-color="#5B4FF0"/>
+    </linearGradient>
+    <linearGradient id="threadBottom" x1="6" y1="36" x2="30" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8175FC"/>
+      <stop offset="1" stop-color="#5B4FF0"/>
+    </linearGradient>
+    <linearGradient id="output" x1="30" y1="24" x2="42" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5B4FF0"/>
+      <stop offset="1" stop-color="#FF6B57"/>
+    </linearGradient>
+  </defs>
+
+  <!-- three input threads (the models) converging -->
+  <path d="M6,12 C17,12 21,19 30,24" fill="none" stroke="url(#threadTop)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M6,24 L30,24" fill="none" stroke="#5B4FF0" stroke-width="3" stroke-linecap="round"/>
+  <path d="M6,36 C17,36 21,29 30,24" fill="none" stroke="url(#threadBottom)" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- single output flow (the answer) -->
+  <path d="M30,24 L40,24" fill="none" stroke="url(#output)" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- output node -->
+  <circle cx="42.5" cy="24" r="3.5" fill="#FF6B57"/>
+</svg>

@@ -1,34 +1,65 @@
-import { useAppDispatch } from "@/app/hooks";
 import { Button } from "@/components";
 import React, { useState } from "react";
-import { addMessage } from "../chatSlice";
+import { useDispatch, useSelector } from "react-redux";
+import ModelPreferencesModal from "./ModelPreferencesModal";
+import { useParams } from "react-router-dom";
+import { sendMessageThunk } from "../chat.thunks";
 
 function PromptInput() {
-  const { prompt, setPrompt } = useState("");
+  const [prompt, setPrompt] = useState("");
 
-  const dispatch = useAppDispatch();
+  const [showModels, setShowModels] = useState(false);
+
+  const { conversationId } = useParams();
+
+  const dispatch = useDispatch();
+
+  const { selectedModels } = useSelector((state) => state.chat);
 
   const handleSend = () => {
     if (!prompt.trim()) return;
 
-    dispatch(addMessage({ id: Date.now(), role: "user", content: prompt }));
+    dispatch(
+      sendMessageThunk({
+        conversationId,
+        payload: {
+          prompt: prompt,
+          activeModels: selectedModels,
+        },
+      })
+    );
 
     setPrompt("");
   };
 
   return (
-    <div className="boder-t border-zinc-800 p-6">
-      <div className="flex gap-3">
-        <textarea
-          rows={3}
-          placeholder="Ask Anything..."
-          className="flex-1 resize-none rounded-xl border border-zinc-700 bg-zinc-900 p-4 text-white outline-none"
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-        />
-        <Button onClick={handleSend}>Send</Button>
+    <>
+      <div className="flex border-t border-zinc-800 p-3">
+        <div className="mr-3 flex w-full items-end gap-3">
+          <textarea
+            rows={3}
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            placeholder="Ask anything..."
+            className="flex-1 resize-none rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3"
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <Button onClick={() => setShowModels(true)}>Models</Button>
+
+          <Button
+            className="disabled:cursor-not-allowed disabled:opacity-50"
+            disabled={prompt.trim() === ""}
+            onClick={handleSend}
+          >
+            Send
+          </Button>
+        </div>
       </div>
-    </div>
+
+      <ModelPreferencesModal open={showModels} onClose={() => setShowModels(false)} />
+    </>
   );
 }
 

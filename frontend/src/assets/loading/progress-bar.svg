@@ -1,0 +1,8 @@
+<svg width="240" height="8" viewBox="0 0 240 8" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .pf-fill { animation: pf-progress 1.8s ease-in-out infinite; }
+    @keyframes pf-progress { 0% { width: 0; } 60% { width: 200px; } 100% { width: 200px; opacity: 0; } }
+  </style>
+  <rect width="240" height="8" rx="4" fill="#262B3D"/>
+  <rect class="pf-fill" x="0" y="0" height="8" rx="4" fill="#5B4FF0"/>
+</svg>

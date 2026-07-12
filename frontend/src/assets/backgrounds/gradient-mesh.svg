@@ -1,0 +1,14 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#12151F"/>
+      <stop offset="1" stop-color="#0B0D14"/>
+    </linearGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1.4" cy="1.4" r="1.4" fill="#262B3D" opacity="0.55"/>
+    </pattern>
+    <radialGradient id="glow4" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#5B4FF0" stop-opacity="0.25"/><stop offset="1" stop-color="#5B4FF0" stop-opacity="0"/></radialGradient><radialGradient id="glow5" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FF6B57" stop-opacity="0.16"/><stop offset="1" stop-color="#FF6B57" stop-opacity="0"/></radialGradient><radialGradient id="glow6" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#8175FC" stop-opacity="0.18"/><stop offset="1" stop-color="#8175FC" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bgGrad)"/>
+  <rect width="1600" height="900" fill="url(#dots)"/>
+<circle cx="300" cy="200" r="500" fill="url(#glow4)"/><circle cx="1300" cy="700" r="450" fill="url(#glow5)"/><circle cx="1100" cy="150" r="350" fill="url(#glow6)"/></svg>

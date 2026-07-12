@@ -1,9 +1,9 @@
-import api from "@/config/axios";
-
-export const login = (data) => api.post("/users/login", data);
+import api from "@/config/interceptor";
 
 export const signup = (data) => api.post("/users/register", data);
 
-export const logout = (data) => api.post("/users/logout");
+export const login = (data) => api.post("/users/login", data);
+
+export const logout = () => api.get("/users/logout");
 
 export const getCurrentUser = () => api.get("/users/current-user");

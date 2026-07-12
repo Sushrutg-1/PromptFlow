@@ -1,0 +1,14 @@
+<svg width="480" height="360" viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="480" y2="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#12151F"/>
+      <stop offset="1" stop-color="#0B0D14"/>
+    </linearGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1.4" cy="1.4" r="1.4" fill="#262B3D" opacity="0.55"/>
+    </pattern>
+    <radialGradient id="glow10" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#F0A93B" stop-opacity="0.15"/><stop offset="1" stop-color="#F0A93B" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="480" height="360" fill="url(#bgGrad)"/>
+  <rect width="480" height="360" fill="url(#dots)"/>
+<circle cx="240" cy="160" r="200" fill="url(#glow10)"/><rect x="150" y="110" width="180" height="100" rx="16" fill="#1A1E2B" fill-opacity="0.9" stroke="#262B3D" stroke-width="1.5"/><rect x="170" y="134" width="120" height="8" rx="4" fill="#6E7495" opacity="0.5"/><rect x="170" y="154" width="90" height="8" rx="4" fill="#6E7495" opacity="0.4"/><circle cx="300" cy="224" r="20" fill="#1A1E2B" stroke="#F0A93B" stroke-width="2.5"/><line x1="300" y1="214" x2="300" y2="226" stroke="#F0A93B" stroke-width="3" stroke-linecap="round"/><circle cx="300" cy="234" r="1.6" fill="#F0A93B"/></svg>

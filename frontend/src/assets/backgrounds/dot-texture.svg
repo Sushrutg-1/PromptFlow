@@ -1,0 +1,9 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="noiseDots" width="18" height="18" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#6E7495" opacity="0.25"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="900" fill="#0B0D14"/>
+  <rect width="1600" height="900" fill="url(#noiseDots)"/>
+</svg>

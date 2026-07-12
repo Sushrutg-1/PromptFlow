@@ -1,0 +1,7 @@
+<svg width="10" height="20" viewBox="0 0 10 20" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .pf-blink { animation: pf-blink 1s step-start infinite; }
+    @keyframes pf-blink { 50% { opacity: 0; } }
+  </style>
+  <rect class="pf-blink" x="1" y="1" width="8" height="18" rx="2" fill="#FF6B57"/>
+</svg>

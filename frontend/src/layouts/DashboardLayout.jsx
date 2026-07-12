@@ -1,16 +1,16 @@
 import React from "react";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "../features/chat/components/Sidebar";
 import Header from "./components/Header";
-import MainContent from "./components/MainContent";
+import { Outlet } from "react-router-dom";
 
 function DashboardLayout() {
   return (
-    <div className="flex h-screen bg-zinc-950 text-white">
+    <div className="flex h-screen text-white">
       <Sidebar />
       <div className="flex flex-1 flex-col">
         <Header />
 
-        <MainContent />
+        <Outlet />
       </div>
     </div>
   );

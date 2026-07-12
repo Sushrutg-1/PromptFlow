@@ -1,0 +1,14 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#12151F"/>
+      <stop offset="1" stop-color="#0B0D14"/>
+    </linearGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1.4" cy="1.4" r="1.4" fill="#262B3D" opacity="0.55"/>
+    </pattern>
+    
+  </defs>
+  <rect width="1600" height="900" fill="url(#bgGrad)"/>
+  <rect width="1600" height="900" fill="url(#dots)"/>
+<path d="M0,100 C400.0,70 640.0,130 960.0,100 S1360.0,70 1600,100" fill="none" stroke="#A199FF" stroke-width="1.5" opacity="0.22"/><path d="M0,210 C400.0,160 640.0,260 960.0,210 S1360.0,160 1600,210" fill="none" stroke="#8175FC" stroke-width="1.5" opacity="0.22"/><path d="M0,320 C400.0,296 640.0,344 960.0,320 S1360.0,296 1600,320" fill="none" stroke="#5B4FF0" stroke-width="1.5" opacity="0.22"/><path d="M0,430 C400.0,398 640.0,462 960.0,430 S1360.0,398 1600,430" fill="none" stroke="#A199FF" stroke-width="1.5" opacity="0.22"/><path d="M0,540 C400.0,500 640.0,580 960.0,540 S1360.0,500 1600,540" fill="none" stroke="#8175FC" stroke-width="1.5" opacity="0.22"/><path d="M0,650 C400.0,629 640.0,671 960.0,650 S1360.0,629 1600,650" fill="none" stroke="#5B4FF0" stroke-width="1.5" opacity="0.22"/><path d="M0,760 C400.0,738 640.0,782 960.0,760 S1360.0,738 1600,760" fill="none" stroke="#A199FF" stroke-width="1.5" opacity="0.22"/></svg>

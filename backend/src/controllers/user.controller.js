@@ -33,10 +33,6 @@ const generateAccessTokenAndRefreshToken = async (userId) => {
 export const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
-  console.log(req.body);
-
-  console.log(name, email, password);
-
   if ([name, email, password].some((field) => !field?.trim())) {
     throw new ApiError(HTTP_STATUS.BAD_REQUEST, API_MESSAGES.REQUIRED_FIELDS_MISSING);
   }
@@ -61,7 +57,7 @@ export const registerUser = asyncHandler(async (req, res) => {
 
   return res
     .status(HTTP_STATUS.CREATED)
-    .json(new ApiResponse(HTTP_STATUS.CREATED, createdUser, API_MESSAGES.REGISTER_SUCCESS));
+    .json(new ApiResponse(HTTP_STATUS.CREATED, {}, API_MESSAGES.REGISTER_SUCCESS));
 });
 
 export const loginUser = asyncHandler(async (req, res) => {
@@ -149,9 +145,8 @@ export const logoutUser = asyncHandler(async (req, res) => {
 export const changeCurrentPassword = asyncHandler(async (req, res) => {
   const { password, newPassword, confirmNewPassword } = req.body;
   console.log(req.body);
-  
 
-  if ([password, newPassword, confirmNewPassword].some((field) => !field?.trim())) {  
+  if ([password, newPassword, confirmNewPassword].some((field) => !field?.trim())) {
     throw new ApiError(HTTP_STATUS.BAD_REQUEST, API_MESSAGES.REQUIRED_FIELDS_MISSING);
   }
 

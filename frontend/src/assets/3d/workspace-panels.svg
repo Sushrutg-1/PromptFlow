@@ -1,0 +1,14 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="800" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#12151F"/>
+      <stop offset="1" stop-color="#0B0D14"/>
+    </linearGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1.4" cy="1.4" r="1.4" fill="#262B3D" opacity="0.55"/>
+    </pattern>
+    <radialGradient id="glow5" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#5B4FF0" stop-opacity="0.16"/><stop offset="1" stop-color="#5B4FF0" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  <rect width="800" height="600" fill="url(#dots)"/>
+<circle cx="400" cy="300" r="260" fill="url(#glow5)"/><path d="M220,180 l60,-30 l120,0 l-60,30 Z" fill="#1A1E2B" stroke="#A199FF" stroke-width="1.5"/><path d="M220,180 l0,90 l60,30 l0,-90 Z" fill="#1A1E2B" stroke="#A199FF" stroke-width="1.5" opacity="0.85"/><path d="M280,150 l120,0 l0,90 l-120,-30 Z" fill="#1A1E2B" stroke="#A199FF" stroke-width="1.5" opacity="0.7"/><path d="M340,240 l60,-30 l120,0 l-60,30 Z" fill="#1A1E2B" stroke="#5B4FF0" stroke-width="1.5"/><path d="M340,240 l0,90 l60,30 l0,-90 Z" fill="#1A1E2B" stroke="#5B4FF0" stroke-width="1.5" opacity="0.85"/><path d="M400,210 l120,0 l0,90 l-120,-30 Z" fill="#1A1E2B" stroke="#5B4FF0" stroke-width="1.5" opacity="0.7"/><path d="M460,300 l60,-30 l120,0 l-60,30 Z" fill="#1A1E2B" stroke="#FF6B57" stroke-width="1.5"/><path d="M460,300 l0,90 l60,30 l0,-90 Z" fill="#1A1E2B" stroke="#FF6B57" stroke-width="1.5" opacity="0.85"/><path d="M520,270 l120,0 l0,90 l-120,-30 Z" fill="#1A1E2B" stroke="#FF6B57" stroke-width="1.5" opacity="0.7"/></svg>

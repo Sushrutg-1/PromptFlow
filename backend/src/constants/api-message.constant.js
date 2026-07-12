@@ -1,6 +1,6 @@
 export const API_MESSAGES = Object.freeze({
   // Authentication
-  REGISTER_SUCCESS: "User registered successfully.",
+  REGISTER_SUCCESS: "User registered successfully. Please login.",
   LOGIN_SUCCESS: "Login successful.",
   LOGOUT_SUCCESS: "Logout successful.",
 

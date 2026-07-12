@@ -1,0 +1,16 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="maskOut" x1="280" y1="256" x2="380" y2="256" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5B4FF0"/>
+      <stop offset="1" stop-color="#FF6B57"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="#0B0D14"/>
+  <!-- content kept within center 80% safe zone (410px circle) for OS masking -->
+  <g stroke-linecap="round" fill="none">
+    <path d="M96,176 C190,176 220,232 256,256" stroke="#8175FC" stroke-width="34"/>
+    <path d="M96,336 C190,336 220,280 256,256" stroke="#8175FC" stroke-width="34"/>
+    <path d="M256,256 L340,256" stroke="url(#maskOut)" stroke-width="44"/>
+  </g>
+  <circle cx="368" cy="256" r="40" fill="#FF6B57"/>
+</svg>

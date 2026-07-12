@@ -1,4 +1,5 @@
-import { appName } from "@/utils/test";
+import "@/config/interceptor";
+
 import AppRouter from "./routes/AppRouter";
 
 function App() {

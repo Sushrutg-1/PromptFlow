@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="984" height="72" viewBox="0 0 984 72">
+  <!--
+    PromptFlow core icon set — Phase 1 (12 icons)
+    Grid: 24x24, stroke: 2px, round caps/joins, color: #A3A9C7 (text-secondary)
+    Each icon sits in its own 24x24 cell, 8px gutters, laid out in a single row for preview.
+    Symbols are also defined with <symbol> ids for reuse via <use href="#icon-chat">.
+  -->
+  <style>
+    .pf-icon { fill: none; stroke: #A3A9C7; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .pf-icon-solid { fill: #A3A9C7; stroke: none; }
+  </style>
+
+  <defs>
+    <symbol id="icon-chat" viewBox="0 0 24 24">
+      <path class="pf-icon" d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/>
+    </symbol>
+
+    <symbol id="icon-ai-models" viewBox="0 0 24 24">
+      <path class="pf-icon" d="M4 8 10 12 4 16"/>
+      <path class="pf-icon" d="M10 8 16 12 10 16" opacity="0.6"/>
+      <path class="pf-icon" d="M16 12h4"/>
+      <circle class="pf-icon-solid" cx="21" cy="12" r="1.6"/>
+    </symbol>
+
+    <symbol id="icon-workspace" viewBox="0 0 24 24">
+      <rect class="pf-icon" x="3" y="4" width="8" height="7" rx="1.5"/>
+      <rect class="pf-icon" x="13" y="4" width="8" height="16" rx="1.5"/>
+      <rect class="pf-icon" x="3" y="13" width="8" height="7" rx="1.5"/>
+    </symbol>
+
+    <symbol id="icon-settings" viewBox="0 0 24 24">
+      <circle class="pf-icon" cx="12" cy="12" r="3"/>
+      <path class="pf-icon" d="M12 3v2.5M12 18.5V21M21 12h-2.5M5.5 12H3M18.36 5.64l-1.77 1.77M7.41 16.59l-1.77 1.77M18.36 18.36l-1.77-1.77M7.41 7.41 5.64 5.64"/>
+    </symbol>
+
+    <symbol id="icon-search" viewBox="0 0 24 24">
+      <circle class="pf-icon" cx="11" cy="11" r="6.5"/>
+      <path class="pf-icon" d="M20 20l-4.3-4.3"/>
+    </symbol>
+
+    <symbol id="icon-folder" viewBox="0 0 24 24">
+      <path class="pf-icon" d="M3.5 6.5A1.5 1.5 0 0 1 5 5h4l2 2h8a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 19 19H5a1.5 1.5 0 0 1-1.5-1.5Z"/>
+    </symbol>
+
+    <symbol id="icon-pin" viewBox="0 0 24 24">
+      <path class="pf-icon" d="M12 3v6M8 9h8l1.5 4.5H6.5L8 9Z"/>
+      <path class="pf-icon" d="M12 13.5V21"/>
+    </symbol>
+
+    <symbol id="icon-archive" viewBox="0 0 24 24">
+      <rect class="pf-icon" x="3.5" y="4.5" width="17" height="4.5" rx="1"/>
+      <path class="pf-icon" d="M4.5 9v9a1.5 1.5 0 0 0 1.5 1.5h12A1.5 1.5 0 0 0 19.5 18V9"/>
+      <path class="pf-icon" d="M10 13h4"/>
+    </symbol>
+
+    <symbol id="icon-share" viewBox="0 0 24 24">
+      <circle class="pf-icon" cx="18" cy="5" r="2.3"/>
+      <circle class="pf-icon" cx="6" cy="12" r="2.3"/>
+      <circle class="pf-icon" cx="18" cy="19" r="2.3"/>
+      <path class="pf-icon" d="M8.1 10.8 15.9 6.2M8.1 13.2l7.8 4.6"/>
+    </symbol>
+
+    <symbol id="icon-upload" viewBox="0 0 24 24">
+      <path class="pf-icon" d="M12 15V4M8 8l4-4 4 4"/>
+      <path class="pf-icon" d="M4.5 15v3A1.5 1.5 0 0 0 6 19.5h12a1.5 1.5 0 0 0 1.5-1.5v-3"/>
+    </symbol>
+
+    <symbol id="icon-download" viewBox="0 0 24 24">
+      <path class="pf-icon" d="M12 4v11M8 11l4 4 4-4"/>
+      <path class="pf-icon" d="M4.5 15v3A1.5 1.5 0 0 0 6 19.5h12a1.5 1.5 0 0 0 1.5-1.5v-3"/>
+    </symbol>
+
+    <symbol id="icon-profile" viewBox="0 0 24 24">
+      <circle class="pf-icon" cx="12" cy="8.5" r="3.5"/>
+      <path class="pf-icon" d="M4.5 20a7.5 7.5 0 0 1 15 0"/>
+    </symbol>
+  </defs>
+
+  <!-- preview row -->
+  <g>
+    <use href="#icon-chat" x="0" y="24" width="24" height="24"/>
+    <use href="#icon-ai-models" x="82" y="24" width="24" height="24"/>
+    <use href="#icon-workspace" x="164" y="24" width="24" height="24"/>
+    <use href="#icon-settings" x="246" y="24" width="24" height="24"/>
+    <use href="#icon-search" x="328" y="24" width="24" height="24"/>
+    <use href="#icon-folder" x="410" y="24" width="24" height="24"/>
+    <use href="#icon-pin" x="492" y="24" width="24" height="24"/>
+    <use href="#icon-archive" x="574" y="24" width="24" height="24"/>
+    <use href="#icon-share" x="656" y="24" width="24" height="24"/>
+    <use href="#icon-upload" x="738" y="24" width="24" height="24"/>
+    <use href="#icon-download" x="820" y="24" width="24" height="24"/>
+    <use href="#icon-profile" x="902" y="24" width="24" height="24"/>
+  </g>
+</svg>
