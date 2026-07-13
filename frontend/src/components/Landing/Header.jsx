@@ -6,21 +6,35 @@ import { Button } from "..";
 export default function Header() {
   const navigate = useNavigate();
 
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   const navItems = [
     {
       name: "Product",
       isActive: true,
       path: "/",
+      href: "product",
     },
+    {
+      name: "Compare",
+      isActive: false,
+      path: "/",
+      href: "compare",
+    },
+
     {
       name: "Pricing",
-      isActive: true,
+      isActive: false,
       path: "/",
+      href: "pricing",
     },
     {
-      name: "Doc",
-      isActive: true,
+      name: "Docs",
+      isActive: false,
       path: "/",
+      href: "docs",
     },
   ];
 
@@ -33,13 +47,14 @@ export default function Header() {
       </div>
       <div className="flex gap-5 w-2xs p-2 items-center justify-center rounded-full bg-zinc-800 ">
         {navItems.map((item) => (
-          <Link
+          <a
             key={item.name}
             className={`${item.isActive ? "" : ""}  transition  rounded-full hover:bg-zinc-600 `}
-            to={item.path}
+            // to={item.path}
+            href={`#${item.href}`}
           >
             {item.name}
-          </Link>
+          </a>
         ))}
       </div>
       <div className="flex gap-5">

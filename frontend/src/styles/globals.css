@@ -57,8 +57,12 @@
 
 body {
   background-image: url("../assets/backgrounds/dot-texture.svg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   background-repeat: no-repeat;
   color: silver;
+
 }
 
 * {
