@@ -1,5 +1,5 @@
 import { Button } from "@/components";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ModelPreferencesModal from "./ModelPreferencesModal";
 import { useParams } from "react-router-dom";
@@ -41,7 +41,7 @@ function PromptInput() {
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="Ask anything..."
-            className="flex-1 resize-none rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3"
+            className="flex-1 resize-none rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 outline-none focus:border-violet-500"
           />
         </div>
 

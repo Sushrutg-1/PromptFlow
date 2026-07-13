@@ -4,6 +4,8 @@ import {
   getConversations,
   getConversationById,
   sendMessage,
+  deleteConversation,
+  renameConversation,
 } from "./api/chat.api";
 
 export const createNewConversation = createAsyncThunk(
@@ -64,6 +66,41 @@ export const sendMessageThunk = createAsyncThunk(
     try {
       const { conversationId, payload } = data;
       const response = await sendMessage(conversationId, payload);
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data ?? {
+          message: error.message,
+          success: false,
+        }
+      );
+    }
+  }
+);
+
+export const renameConversationThunk = createAsyncThunk(
+  "conversations/renameConversation",
+  async (data, thunkAPI) => {
+    try {
+      const { id, title } = data;
+      const response = await renameConversation(id, { title });
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data ?? {
+          message: error.message,
+          success: false,
+        }
+      );
+    }
+  }
+);
+
+export const deleteConversationThunk = createAsyncThunk(
+  "conversations/deleteConversation",
+  async (conversationId, thunkAPI) => {
+    try {
+      const response = await deleteConversation(conversationId);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(

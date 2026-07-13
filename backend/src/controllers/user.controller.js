@@ -183,11 +183,14 @@ export const getCurrentUser = asyncHandler(async (req, res) => {
 
 export const updateUserAvatar = asyncHandler(async (req, res) => {
   const avatarLocalPath = req.file?.path;
+  console.log(avatarLocalPath);
+
   if (!avatarLocalPath) {
     throw new ApiError(HTTP_STATUS.BAD_REQUEST, API_MESSAGES.AVATAR_NOT_FOUND);
   }
 
   const avatar = await uploadToCloude(avatarLocalPath);
+
   if (!avatar?.url) {
     throw new ApiError(HTTP_STATUS.INTERNAL_SERVER_ERROR, API_MESSAGES.AVATAR_UPDATE_FAILED);
   }

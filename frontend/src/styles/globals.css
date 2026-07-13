@@ -56,7 +56,12 @@
 /* CSS */
 
 body {
-  background-image: url("../assets/backgrounds/gradient-mesh.svg");
+  background-image: url("../assets/backgrounds/dot-texture.svg");
   background-repeat: no-repeat;
   color: silver;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #300870 transparent;
 }

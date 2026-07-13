@@ -1,21 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "@/assets/logos/logo-horizontal.svg";
 import { Button, Input } from "@/components";
 import {
   createNewConversation,
+  deleteConversationThunk,
   getAllConversations,
   getConversation,
+  renameConversationThunk,
 } from "@/features/chat/chat.thunks";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Spinner from "@/components/ui/Spinner";
 
 function Sidebar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { allConversations } = useSelector((state) => state.chat);
+  const { allConversations, currentConversation } = useSelector((state) => state.chat);
 
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const [editingId, setEditingId] = useState(null);
+  const [title, setTitle] = useState("");
+
+  const [moreModalOpen, setMoreModalOpen] = React.useState(null);
+
+  const { loading } = useSelector((state) => state.chat);
+
+  const [searchTerm, setSearchTerm] = React.useState("");
 
   const handleCreateNewConversation = async () => {
     try {
@@ -31,9 +43,35 @@ function Sidebar() {
     navigate(`/chat/${conversationId}`);
   };
 
+  const handleRenameClick = (conversation) => {
+    setEditingId(conversation._id);
+    setTitle(conversation.title);
+    setMoreModalOpen(null);
+  };
+
+  const handleRenameConversation = async (conversationId) => {
+    // Implementation for renaming conversation
+    const result = await dispatch(renameConversationThunk({ id: conversationId, title }));
+    if (renameConversationThunk.fulfilled.match(result)) {
+      setEditingId(null);
+      setTitle("");
+      dispatch(getAllConversations());
+    }
+  };
+
+  const handleDeleteConversation = async (conversationId) => {
+    const result = await dispatch(deleteConversationThunk(conversationId));
+
+    if (deleteConversationThunk.fulfilled.match(result)) {
+      setMoreModalOpen(null);
+      navigate("/chat");
+      dispatch(getAllConversations());
+    }
+  };
+
   useEffect(() => {
     dispatch(getAllConversations());
-  }, [dispatch]);
+  }, [dispatch, navigate]);
 
   return (
     <aside className="w-70 border-r border-zinc-800 bg-zinc-900 p-4 flex flex-col gap-4">
@@ -68,27 +106,217 @@ function Sidebar() {
             New Conversation
           </Button>
         </div>
-        <Input placeholder="Search conversations..." />
+        <Input
+          placeholder="Search conversations..."
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+
+        {searchTerm && (
+          <div className="mt-3 max-h-110 overflow-y-auto rounded-lg border border-zinc-800">
+            <h3 className="sticky top-0 bg-zinc-900 p-2 text-center font-bold">Search Results</h3>
+            <ul>
+              {allConversations &&
+                allConversations.length > 0 &&
+                allConversations
+                  .filter((conv) => conv.title.includes(searchTerm))
+                  .map((conv) => (
+                    <li
+                      className={`p-2   rounded mb-1.5 flex justify-between ${currentConversation?._id === conv._id ? "bg-violet-500" : "bg-zinc-800 hover:bg-zinc-700"}`}
+                      key={conv._id}
+                      onClick={() => {
+                        handleClickOnConversation(conv._id);
+                      }}
+                    >
+                      {editingId === conv._id ? (
+                        <Input
+                          value={title}
+                          autoFocus
+                          onChange={(e) => setTitle(e.target.value)}
+                          onClick={(e) => e.stopPropagation()}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              handleRenameConversation(conv._id);
+                            }
+
+                            if (e.key === "Escape") {
+                              setEditingId(null);
+                            }
+                          }}
+                          onBlur={() => handleRenameConversation(conv._id)}
+                        />
+                      ) : (
+                        <span>{conv.title}</span>
+                      )}
+                      <div className="relative">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setMoreModalOpen((prev) => (prev === conv._id ? null : conv._id));
+                          }}
+                          className="rounded-md p-1 hover:bg-zinc-700"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            width="20"
+                            height="20"
+                          >
+                            <circle cx="5" cy="12" r="2" />
+                            <circle cx="12" cy="12" r="2" />
+                            <circle cx="19" cy="12" r="2" />
+                          </svg>
+                        </button>
+
+                        {moreModalOpen === conv._id && (
+                          <div className="absolute right-0 top-10 z-50 w-52 rounded-xl border border-zinc-700 bg-zinc-800 py-2 shadow-xl">
+                            <p className="px-4 py-2 w-full text-right ">
+                              <span
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setMoreModalOpen(null);
+                                }}
+                                className="rounded bg-zinc-800 hover:bg-zinc-900 p-2"
+                              >
+                                {" "}
+                                ❌
+                              </span>
+                            </p>
+
+                            <button
+                              className="flex w-full items-center px-4 py-2 text-left hover:bg-zinc-700"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleRenameClick(conv);
+                              }}
+                            >
+                              Rename Conversation
+                            </button>
+
+                            <button
+                              className="flex w-full items-center px-4 py-2 text-left text-red-400 hover:bg-red-500/10"
+
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleDeleteConversation(conv._id);
+                              }}
+                            >
+                              Delete Conversation
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+            </ul>
+          </div>
+        )}
       </div>
 
-      <h3 className="text-center font-bold">History</h3>
-      <div className="flex-1 overflow-y-auto">
-        <ul>
-          {allConversations &&
-            allConversations.length > 0 &&
-            allConversations.map((conv) => (
-              <li
-                className="p-2 bg-zinc-800  rounded mb-1.5"
-                key={conv._id}
-                onClick={(e) => {
-                  handleClickOnConversation(conv._id);
-                }}
-              >
-                {conv.title}
-              </li>
-            ))}
-        </ul>
-      </div>
+      {!searchTerm && (
+        <div className="flex-1 overflow-y-auto">
+          <h3 className="text-center font-bold">All History</h3>
+          {loading.getConversations || loading.deleteConversation ? (
+            <div className="flex items-center justify-center">
+              <Spinner />
+            </div>
+          ) : (
+            <ul>
+              {allConversations &&
+                allConversations.length > 0 &&
+                allConversations.map((conv) => (
+                  <li
+                    className={`p-2 flex justify-between rounded mb-1.5 ${currentConversation?._id === conv._id ? "bg-violet-500" : "bg-zinc-800 hover:bg-zinc-700"}`}
+                    key={conv._id}
+                    onClick={() => {
+                      handleClickOnConversation(conv._id);
+                    }}
+                  >
+                    {editingId === conv._id ? (
+                      <Input
+                        value={title}
+                        autoFocus
+                        onChange={(e) => setTitle(e.target.value)}
+                        onClick={(e) => e.stopPropagation()}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            handleRenameConversation(conv._id);
+                          }
+
+                          if (e.key === "Escape") {
+                            setEditingId(null);
+                          }
+                        }}
+                        onBlur={() => handleRenameConversation(conv._id)}
+                      />
+                    ) : (
+                      <span>{conv.title}</span>
+                    )}
+                    <div className="relative">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setMoreModalOpen((prev) => (prev === conv._id ? null : conv._id));
+                        }}
+                        className="rounded-md p-1 hover:bg-zinc-700"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          width="20"
+                          height="20"
+                        >
+                          <circle cx="5" cy="12" r="2" />
+                          <circle cx="12" cy="12" r="2" />
+                          <circle cx="19" cy="12" r="2" />
+                        </svg>
+                      </button>
+
+                      {moreModalOpen === conv._id && (
+                        <div className="absolute right-0 top-10 z-50 w-52 rounded-xl border border-zinc-700 bg-zinc-800 py-2 shadow-xl">
+                          <p className="px-4 py-2 w-full text-right ">
+                            <span
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setMoreModalOpen(null);
+                              }}
+                              className="rounded bg-zinc-800 hover:bg-zinc-900 p-2"
+                            >
+                              {" "}
+                              ❌
+                            </span>
+                          </p>
+
+                          <button
+                            className="flex w-full items-center px-4 py-2 text-left hover:bg-zinc-700"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleRenameClick(conv);
+                            }}
+                          >
+                            Rename Conversation
+                          </button>
+
+                          <button
+                            className="flex w-full items-center px-4 py-2 text-left text-red-400 hover:bg-red-500/10"
+
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDeleteConversation(conv._id);
+                            }}
+                          >
+                            Delete Conversation
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </li>
+                ))}
+            </ul>
+          )}
+        </div>
+      )}
     </aside>
   );
 }

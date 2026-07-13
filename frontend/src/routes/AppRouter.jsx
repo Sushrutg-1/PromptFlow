@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PATHS } from "./paths";
 import { LandingPage, NotFoundPage } from "@/pages";
@@ -9,6 +8,7 @@ import DashboardLayout from "@/layouts/DashboardLayout";
 import DashboardPage from "@/features/chat/pages/DashboardPage";
 import PublicRoute from "./PublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
+import ProfilePage from "@/features/profile/pages/ProfilePage";
 
 function AppRouter() {
   return (
@@ -30,6 +30,7 @@ function AppRouter() {
             <Route path={PATHS.DASHBOARD} element={<DashboardPage />} />
             <Route path={"/chat"} element={<DashboardPage />} />
             <Route path={"/chat/:conversationId"} element={<DashboardPage />} />
+            <Route path={"/profile"} element={<ProfilePage />} />
           </Route>
         </Route>
 

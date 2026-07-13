@@ -3,6 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { PATHS } from "./paths";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUserThunk } from "@/features/auth/auth.thunks";
+import FullScreenLoader from "@/components/ui/FullScreenLoader";
 
 export default function ProtectedRoute() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ export default function ProtectedRoute() {
   const { isAuthenticated, isInitializing } = useSelector((state) => state.auth);
 
   if (isInitializing) {
-    return <section>Loading...</section>;
+    return <FullScreenLoader />;
   }
 
   return isAuthenticated ? <Outlet /> : <Navigate to={PATHS.LOGIN} replace />;

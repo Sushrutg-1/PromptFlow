@@ -1,13 +1,32 @@
+import Spinner from "@/components/ui/Spinner";
+import { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
+
+// Formating Text
+import Markdown from "react-markdown";
+import rehypeHighlight from "rehype-highlight";
+import "highlight.js/styles/github-dark.css";
+
 export default function ChatCard({ provider, model, turns }) {
+  const { loading } = useSelector((state) => state.chat);
+
+  const bottomRef = useRef(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [turns]);
+
   return (
-    <div className=" m-2 flex h-[550px] min-w-[550px] max-w-[525px] flex-col overflow-y-auto rounded-[10px] border border-zinc-800 bg-zinc-900">
+    <div className=" m-2 flex h-full min-w-[550px] max-w-[525px] flex-col overflow-y-auto rounded-[10px] border border-zinc-800 bg-zinc-900">
       <div className="sticky top-0 z-10 border-b rounded-[10px] border-zinc-800 bg-zinc-950 p-4">
         <h2 className="font-medium"> {model}</h2>
       </div>
 
       <div className="flex-1 space-y-8 p-4">
-        {turns.map((turn) => {
+        {turns.map((turn, index) => {
           const response = turn.responses?.find((r) => r.provider === provider);
+
+          const isLatestTurn = index === turns.length - 1;
 
           if (!response) return null;
 
@@ -18,18 +37,19 @@ export default function ChatCard({ provider, model, turns }) {
                 <div className="max-w-[80%] rounded-2xl bg-zinc-800 px-4 py-2">{turn.prompt}</div>
               </div>
 
-              {/* AI Response */}
-              {response.status === "completed" ? (
-                <div className="whitespace-pre-wrap break-all max-w-[90%] rounded-2xl border border-zinc-800 bg-zinc-900 p-5 shadow-sm transition-colors hover:border-zinc-700  text-white">
-                  {response.content}
+              {loading.sendMessage && isLatestTurn ? (
+                <div className="max-w-[90%] rounded-2xl border border-zinc-800 bg-zinc-900 p-5">
+                  <Spinner />
+                </div>
+              ) : response.status === "completed" ? (
+                <div className="max-w-[90%] rounded-2xl border border-zinc-800 bg-zinc-900 p-5">
+                  <Markdown rehypePlugins={[rehypeHighlight]}>{response.content}</Markdown>
                 </div>
               ) : (
-                <div className="rounded-xl whitespace-pre-wrap break-all border max-w-[90%] border-red-500/30 bg-red-500/10 p-4">
-                  <p className="font-semibold text-red-400 whitespace-pre-wrap">
-                    Failed to generate response
-                  </p>
+                <div className="max-w-[90%] rounded-xl border border-red-500/30 bg-red-500/10 p-4">
+                  <p className="font-semibold text-red-400">Failed to generate response</p>
 
-                  <p className="mt-2 whitespace-pre-wrap break-alltext-sm text-zinc-400">
+                  <p className="mt-2 text-sm text-zinc-400">
                     {response.error || "Something went wrong."}
                   </p>
                 </div>
@@ -37,6 +57,7 @@ export default function ChatCard({ provider, model, turns }) {
             </div>
           );
         })}
+        <div ref={bottomRef} />
       </div>
     </div>
   );

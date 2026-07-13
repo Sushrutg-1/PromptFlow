@@ -40,8 +40,8 @@ function MessageBox() {
   }
 
   return (
-    <section className="flex-1 overflow-hidden">
-      <div className="flex h-full overflow-x-auto overflow-y-hidden">
+    <section className="flex-1 overflow-hidden mb-2 rounded-2xl">
+      <div className="flex h-full overflow-x-auto overflow-y-hidden rounded-2xl">
         {selectedModels.map((selected) => (
           <ChatCard
             key={selected.provider}

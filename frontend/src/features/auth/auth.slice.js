@@ -1,5 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCurrentUserThunk, loginUser, logoutUserThunk, signupUser } from "./auth.thunks";
+import {
+  getCurrentUserThunk,
+  loginUser,
+  logoutUserThunk,
+  signupUser,
+  updateAccountDetailsThunk,
+  updateUserAvatarThunk,
+} from "./auth.thunks";
 
 const initialState = {
   user: null,
@@ -113,6 +120,46 @@ const authSlice = createSlice({
       })
 
       .addCase(logoutUserThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.payload?.message || "Something went wrong";
+      })
+
+      .addCase(updateAccountDetailsThunk.pending, (state, action) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
+      })
+
+      .addCase(updateAccountDetailsThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.message = action.payload.message;
+        state.user = action.payload.data;
+      })
+
+      .addCase(updateAccountDetailsThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.payload?.message || "Something went wrong";
+      })
+
+      .addCase(updateUserAvatarThunk.pending, (state, action) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
+      })
+      .addCase(updateUserAvatarThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.message = action.payload.message;
+        state.user = action.payload.data;
+      })
+      .addCase(updateUserAvatarThunk.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;

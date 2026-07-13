@@ -1,5 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getCurrentUser, login, logout, signup } from "./api/auth.api";
+import {
+  getCurrentUser,
+  login,
+  logout,
+  signup,
+  updateAccountDetails,
+  updateUserAvatar,
+} from "./api/auth.api";
 
 export const signupUser = createAsyncThunk("users/signup", async (data, thunkAPI) => {
   try {
@@ -58,3 +65,39 @@ export const logoutUserThunk = createAsyncThunk("users/logout", async (_, thunkA
     );
   }
 });
+
+export const updateAccountDetailsThunk = createAsyncThunk(
+  "users/updateAccountDetails",
+  async (data, thunkAPI) => {
+    try {
+      const response = await updateAccountDetails(data);
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data ?? {
+          message: error.message,
+          success: false,
+        }
+      );
+    }
+  }
+);
+
+export const updateUserAvatarThunk = createAsyncThunk(
+  "users/updateUserAvatar",
+  async (image, thunkAPI) => {
+    try {
+      const formData = new FormData();
+      formData.append("avatar", image);
+      const response = await updateUserAvatar(formData);
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data ?? {
+          message: error.message,
+          success: false,
+        }
+      );
+    }
+  }
+);
