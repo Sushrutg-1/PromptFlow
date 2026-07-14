@@ -42,8 +42,6 @@ export default [
 
       "prefer-template": "error",
 
-     
-
       // Style
       semi: ["error", "always"],
 

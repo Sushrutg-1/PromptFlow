@@ -1,1 +1,1 @@
-export const appName = "PromptFlow"
+export const appName = "PromptFlow";

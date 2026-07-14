@@ -12,4 +12,5 @@ export const sendMessage = (conversationId, payload) =>
 export const renameConversation = (conversationId, payload) =>
   api.patch(`/conversations/${conversationId}`, payload);
 
-export const deleteConversation = (conversationId) => api.delete(`/conversations/${conversationId}`);
+export const deleteConversation = (conversationId) =>
+  api.delete(`/conversations/${conversationId}`);

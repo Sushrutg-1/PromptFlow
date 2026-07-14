@@ -155,7 +155,7 @@ const chatSlice = createSlice({
         state.isError = true;
         state.isSuccess = false;
         state.message = action.payload?.message || "Something went wrong";
-      })
+      });
   },
 });
 

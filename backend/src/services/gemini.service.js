@@ -9,7 +9,7 @@ const generateGeminiResponse = async (prompt, model) => {
   }
   try {
     const interaction = await ai.interactions.create({
-      model: model,
+      model,
       input: prompt,
     });
     const response = interaction.output_text;

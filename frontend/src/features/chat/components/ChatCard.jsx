@@ -34,7 +34,9 @@ export default function ChatCard({ provider, model, turns }) {
             <div key={turn._id}>
               {/* User Prompt */}
               <div className="mb-4 flex justify-end">
-                <div className="max-w-[80%] rounded-2xl bg-zinc-800 px-4 py-2 text-sm">{turn.prompt}</div>
+                <div className="max-w-[80%] rounded-2xl bg-zinc-800 px-4 py-2 text-sm">
+                  {turn.prompt}
+                </div>
               </div>
 
               {loading.sendMessage && isLatestTurn ? (
