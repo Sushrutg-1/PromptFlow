@@ -42,8 +42,7 @@ export default [
 
       "prefer-template": "error",
 
-      // Imports
-      "import/no-duplicates": "error",
+     
 
       // Style
       semi: ["error", "always"],
