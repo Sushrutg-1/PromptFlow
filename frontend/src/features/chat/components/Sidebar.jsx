@@ -76,10 +76,7 @@ function Sidebar({ isOpen, setIsOpen }) {
     <>
       {/* Mobile Overlay */}
       {isOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black/50 "
-          onClick={() => setIsOpen(false)}
-        />
+        <div className="fixed inset-0 z-40 bg-black/50 " onClick={() => setIsOpen(false)} />
       )}
 
       <aside
@@ -140,7 +137,7 @@ function Sidebar({ isOpen, setIsOpen }) {
                 {allConversations &&
                   allConversations.length > 0 &&
                   allConversations
-                    .filter((conv) => conv.title.includes(searchTerm))
+                    .filter((conv) => conv.title.toLowerCase().includes(searchTerm.toLowerCase()))
                     .map((conv) => (
                       <li
                         className={`p-2 rounded mb-1.5 flex justify-between ${currentConversation?._id === conv._id ? "bg-violet-500" : "bg-zinc-800 hover:bg-zinc-700"}`}
