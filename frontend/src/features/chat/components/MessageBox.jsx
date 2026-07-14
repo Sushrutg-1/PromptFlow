@@ -1,8 +1,11 @@
 import { useSelector } from "react-redux";
 import ChatCard from "./ChatCard";
+import Spinner from "@/components/ui/Spinner";
 
 function MessageBox() {
   const { currentConversation, selectedModels } = useSelector((state) => state.chat);
+
+  const { loading } = useSelector((state) => state.chat);
 
   const turns = currentConversation?.turns ?? [];
 
@@ -35,13 +38,18 @@ function MessageBox() {
           <p>Your comparison will appear here.</p>
           <p>Type a prompt below to see every model answer at once.</p>
         </div>
+        {loading.sendMessage && (
+          <div className="flex justify-center p-4">
+            <Spinner />
+          </div>
+        )}
       </section>
     );
   }
 
   return (
-    <section className="flex-1 overflow-hidden mb-2 rounded-2xl">
-      <div className="flex h-full overflow-x-auto overflow-y-hidden rounded-2xl">
+    <section className="flex-1 overflow-y-auto mb-2 rounded-2xl h-full my-auto">
+      <div className="flex h-full overflow-x-auto overflow-y-hidden rounded-2xl my-auto">
         {selectedModels.map((selected) => (
           <ChatCard
             key={selected.provider}

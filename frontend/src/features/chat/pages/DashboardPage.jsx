@@ -15,20 +15,20 @@ function DashboardPage() {
     try {
       const response = await dispatch(createNewConversation()).unwrap();
       navigate(`/chat/${response.data._id}`);
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error creating new conversation: ", error);
+    }
   };
 
   if (!currentConversation) {
     return (
       <section className="flex h-full flex-col justify-around overflow-hidden p-5 text-center">
         <div>
-          <h1 className="mb-3 text-4xl font-bold">
+          <h1 className="mb-3 text-2xl font-bold md:text-4xl lg:text-6xl">
             Hi {user?.name || "User"}, 👋
           </h1>
 
-          <p className="text-lg">
-            Compare answers from multiple AI models.
-          </p>
+          <p className="text-zinc-400">Compare answers from multiple AI models.</p>
         </div>
 
         <div className="flex justify-center">
@@ -53,17 +53,13 @@ function DashboardPage() {
                 </svg>
               </span>
 
-              <p className="mt-3 font-medium">
-                New Conversation
-              </p>
+              <p className="mt-3 font-medium">New Conversation</p>
             </div>
           </div>
         </div>
 
         <div>
-          <h2 className="mb-4 text-2xl font-bold">
-            Your Models
-          </h2>
+          <h2 className="mb-4 text-2xl font-bold">Your Models</h2>
 
           <div className="flex flex-wrap justify-center gap-3">
             <div className="inline-flex items-center gap-2 rounded-full bg-green-500/10 px-4 py-2 text-green-400">

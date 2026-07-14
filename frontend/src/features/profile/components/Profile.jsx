@@ -4,11 +4,13 @@ import { updateAccountDetailsThunk, updateUserAvatarThunk } from "@/features/aut
 import React, { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const [editMode, setEditMode] = React.useState(false);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // const { isLoading } = useSelector((state) => state.auth);
 
@@ -49,10 +51,33 @@ function Profile() {
   };
 
   return (
-    <section className="m-4 bg-zinc-800 text-shadow-olive-400 h-[555px] w-[555px] rounded-2xl ">
-      <div className=" mb-5 bg-zinc-800 text-shadow-olive-400  rounded-2xl overflow-hidden flex justify-center">
+    <section className="m-4 bg-zinc-800 text-shadow-olive-400 h-[500px] w-[555px] rounded-2xl ">
+      <div className=" mb-5 bg-zinc-800 text-shadow-olive-400  rounded-2xl overflow-hidden flex justify-center w-full">
         {!editMode ? (
-          <div className="  p-4 flex flex-col items-center">
+          <div className=" flex flex-col items-center w-full h-full ">
+            <div className="flex justify-end w-full">
+              <span
+                className="hover:cursor-pointer hover:bg-zinc-800 bg-zinc-700 p-2 rounded"
+                onClick={() => {
+                  navigate("/dashboard");
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M18 6L6 18" />
+                  <path d="M6 6L18 18" />
+                </svg>
+              </span>
+            </div>
             <div className="group relative h-20 w-20 cursor-pointer" onClick={handleAvatarClick}>
               <img
                 src={user?.avatar}
@@ -103,7 +128,7 @@ function Profile() {
             </div>
           </div>
         ) : (
-          <div className="  p-4 flex flex-col items-center">
+          <div className="  p-4 flex flex-col items-center w-full h-full mt-5">
             <img className="h-20 w-20 rounded-full mb-5" src={user?.avatar} alt="Avatar" />
             <form onSubmit={handleSubmit(handleUpdateFormSubmit)}>
               <Input
@@ -116,17 +141,20 @@ function Profile() {
                 {...register("email", { required: true })}
                 className="bg-zinc-700 text-white placeholder:text-zinc-500 border border-zinc-500 mb-5"
               />
-              <Button className="mr-3" type="submit">
-                Update Profile
-              </Button>
-              <Button
-                type="submit"
-                onClick={() => {
-                  setEditMode(false);
-                }}
-              >
-                Cancel
-              </Button>
+              <div className="flex justify-around mt-5">
+                {" "}
+                <Button className="mr-3" type="submit">
+                  Update Profile
+                </Button>
+                <Button
+                  type="submit"
+                  onClick={() => {
+                    setEditMode(false);
+                  }}
+                >
+                  Cancel
+                </Button>
+              </div>
             </form>
           </div>
         )}

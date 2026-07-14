@@ -1,14 +1,9 @@
-import React from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "@/assets/logos/logo-horizontal.svg";
 import { Button } from "..";
 
 export default function Header() {
   const navigate = useNavigate();
-
-  const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
 
   const navItems = [
     {
@@ -45,7 +40,7 @@ export default function Header() {
           <img src={Logo} alt="Logo" />
         </Link>
       </div>
-      <div className="flex gap-5 w-2xs p-2 items-center justify-center rounded-full bg-zinc-800 ">
+      <div className="hidden md:flex gap-5 w-2xs p-2 items-center justify-center rounded-full bg-zinc-800 ">
         {navItems.map((item) => (
           <a
             key={item.name}

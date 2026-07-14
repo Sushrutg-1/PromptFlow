@@ -92,6 +92,7 @@ export default function LoginForm() {
           className="w-full outline-none bg-transparent py-2.5"
           type="password"
           placeholder="Password"
+          autoComplete="current-password"
           {...register("password", {
             required: "Password is required",
           })}

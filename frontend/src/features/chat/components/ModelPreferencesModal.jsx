@@ -56,18 +56,23 @@ export default function ModelPreferencesModal({ open, onClose }) {
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
       onClick={onClose}
     >
-      <div className="w-187.5 rounded-2xl bg-zinc-900 p-6" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="h-[90%]  rounded-2xl bg-zinc-900 p-6 overflow-y-auto lg:w-[550px]"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-2xl font-semibold">Choose Your AI Models</h2>
 
-          <button onClick={onClose}>✕</button>
+          <button className="bg-zinc-700 p-2 rounded" onClick={onClose}>
+            ✕
+          </button>
         </div>
 
         <div className="space-y-3">
           {providers.map((provider) => (
             <div
               key={provider.id}
-              className={`flex items-center justify-between rounded-xl border border-zinc-800 p-4 ${
+              className={`flex items-center justify-between rounded-xl border border-zinc-800 p-4 gap-5 ${
                 !provider.enabled && "opacity-40"
               }`}
             >
@@ -81,12 +86,12 @@ export default function ModelPreferencesModal({ open, onClose }) {
                 <h3 className="font-medium">{provider.name}</h3>
               </div>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 <select
                   value={provider.selectedModel}
                   disabled={!provider.enabled}
                   onChange={(e) => handleModelChange(provider.id, e.target.value)}
-                  className="rounded-lg bg-zinc-800 px-3 py-2"
+                  className="rounded-lg bg-zinc-800 px-2 py-2"
                 >
                   {provider.models.map((model) => (
                     <option key={model.id} value={model.id} disabled={!model.enabled}>

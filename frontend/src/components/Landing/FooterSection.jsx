@@ -3,7 +3,7 @@ import LogoImage from "@/assets/logos/logo-horizontal.svg";
 
 function FooterSection() {
   return (
-    <footer id="docs" className="mt-24 border-t border-zinc-800">
+    <footer id="docs" className="mt-24 mb-5 border-t border-zinc-800">
       <div className="mx-auto flex max-w-7xl flex-col gap-12 px-6 py-16 md:flex-row md:justify-between">
         {/* Left */}
         <div className="max-w-sm">
@@ -17,7 +17,7 @@ function FooterSection() {
         </div>
 
         {/* Links */}
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-3">
+        <div className="grid grid-cols-3 gap-10 md:grid-cols-3">
           <div>
             <h3 className="mb-4 text-sm font-semibold text-white">Product</h3>
 
